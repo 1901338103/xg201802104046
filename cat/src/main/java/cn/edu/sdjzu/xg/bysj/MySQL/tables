@@ -1,0 +1,56 @@
+create table degree(
+id bigint not null auto_increment,
+description varchar(225) not null,
+no varchar(225) null,
+remarks varchar(225) null,
+primary key(id)
+);
+
+create table title(
+id bigint not null auto_increment,
+description varchar(225) not null,
+no varchar(225) null,
+remarks varchar(225) null,
+primary key(id)
+);
+
+create table school(
+id bigint not null auto_increment,
+description varchar(225) not null,
+no varchar(225) null,
+remarks varchar(225) null,
+primary key(id)
+);
+
+create table Department(
+id bigint not null auto_increment,
+no varchar(225) not null,
+description varchar(225) not null,
+remarks varchar(225) null,
+school_id bigint not null,
+foreign key(school_id)references school(id),
+primary key(id)
+);
+
+create table Teacher(
+id bigint not null auto_increment,
+no varchar(225) not null,
+name varchar(225) not null,
+profTitle_id bigint not null,
+degree_id bigint not null,
+department_id bigint not null,
+foreign key(profTitle_id)references profTitle(id),
+foreign key(degree_id)references degree(id),
+foreign key(department_id)references department(id),
+primary key(id)
+);
+
+create table user(
+id bigint not null auto_increment,
+username varchar(225) not null unique,
+password varchar(225) not null,
+loginTime date,
+teacher_id bigint not null,
+foreign key(teacher_id)references teacher(id),
+primary key(id)
+);
